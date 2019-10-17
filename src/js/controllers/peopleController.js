@@ -1,6 +1,6 @@
 
 function getData2(_url, _showResults, _showError) {
-  $.ajax('ttps://swapi.co')
+  $.ajax(_url)
     .done(function(data) {
       _showResults(data);
     })
@@ -44,7 +44,7 @@ function showError(_error) {
 
 function peopleController(){
     console.log('Se cargo la home')
-    getData2("https:/swapi.co/api/people/", showResults, showError);
+    getData2("https://swapi.co/api/people/", showResults, showError);
   }
   
   export default peopleController
