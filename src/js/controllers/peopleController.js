@@ -1,3 +1,4 @@
+import { setLocalList } from "../utils/localStorage";
 
 function getData2(_url, _showResults, _showError) {
   $.ajax(_url)
@@ -29,7 +30,7 @@ function showResults(_peopleData) {
         results[i].mass +
         "</td> <td>" +
         results[i].eye_color +
-        "</td> <td><button>" +
+        "</td> <td><button class='save-people'>" +
         "Guardar" +
         "</button></td> </tr>"
 
@@ -38,15 +39,43 @@ function showResults(_peopleData) {
     }
   }
   //if (_peopleData.next) {
-    //getData2(_peopleData.next, showResults, showError);
+  //getData2(_peopleData.next, showResults, showError);
   //}
   console.log($('#seeMore'))
   $('#seeMore').off().click(function () {
     console.log('funciono')
     getData2(_peopleData.next, showResults, showError)
-  
+
   })
+  $(".save-people").click(function () {
+    var peopleRow = $(this).parent().parent();
+    var peopleId = $(this).parent().prev().text();
+    var peopleName = $(this).parent().prev().prev().text();
+    var peopleGender = $(this).parent().prev().prev().prev().text();
+    var peopleHeight = $(this).parent().prev().prev().prev().prev().text();
+    var peopleMass = $(this).parent().prev().prev().prev().prev().prev().text();
+    var peopleEyesColour = $(this).parent().prev().prev().prev().prev().prev().prev().text();
+
+    var peopleObj = {
+      id: peopleId,
+      name: peopleName,
+      gender: peopleGender,
+      height: peopleHeight,
+      mass: peopleMass,
+      eyes: peopleEyesColour
+    }
+
+    var miArrayPeople = []
+    miArrayPeople.push(peopleObj)
+    setLocalList('listaDePersonajes',miArrayPeople)
+
+    peopleRow.remove()
+    
+    
+  })
+  
 }
+
 function showError(_error) {
   console.log(_error);
 }
