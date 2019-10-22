@@ -1,4 +1,4 @@
-import { setLocalList } from "../utils/localStorage";
+import { setLocalList, getLocalList } from "../utils/localStorage";
 
 function getData2(_url, _showResults, _showError) {
   $.ajax(_url)
@@ -9,7 +9,7 @@ function getData2(_url, _showResults, _showError) {
       _showError(error);
     });
 }
-var id = 1;
+
 function showResults(_peopleData) {
   if (_peopleData.results) {
 
@@ -19,7 +19,7 @@ function showResults(_peopleData) {
       //console.log(results[i]);
       $("#personajes").append(
         "<tr><td>" +
-        id +
+        results[i].url.slice(28,-1) +
         "</td> <td>" +
         results[i].name +
         "</td> <td>" +
@@ -35,7 +35,7 @@ function showResults(_peopleData) {
         "</button></td> </tr>"
 
       );
-      id++;
+      
     }
   }
   //if (_peopleData.next) {
@@ -64,16 +64,18 @@ function showResults(_peopleData) {
       mass: peopleMass,
       eyes: peopleEyesColour
     }
+    if (getLocalList("listaDePersonajes")) {
+      var listPeople = getLocalList("listaDepersonajes")
+      listPeople.push(peopleObj)
+      console.log(listPeople);
 
-    var miArrayPeople = []
-    miArrayPeople.push(peopleObj)
-    setLocalList('listaDePersonajes',miArrayPeople)
-
+      setLocalList('listaDePersonajes', listPeople)
+    } else {
+      listPeople = []
+    }
     peopleRow.remove()
-    
-    
   })
-  
+
 }
 
 function showError(_error) {
