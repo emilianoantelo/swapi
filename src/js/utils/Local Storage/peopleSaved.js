@@ -1,4 +1,5 @@
 import { getLocalList } from "../localStorage";
+import deletePeople from "./deletePeople";
 
 export default function peopleSaved() {
 
@@ -24,4 +25,5 @@ export default function peopleSaved() {
       "Borrar" +
       "</button></td> </tr>")
   }
+  deletePeople()
 }
