@@ -1,9 +1,8 @@
-import { getLocalList, setLocalList } from '../localStorage'
-import showError from '../../controllers/peopleController'
-import getData from './getData';
+
 import seeMore from './seeMore';
 import saveChar from './saveChar';
 import translateChar from './translateChar';
+import findChar from './findChar';
 
 export default function showResults(_peopleData) {
     if (_peopleData.results) {
@@ -13,30 +12,37 @@ export default function showResults(_peopleData) {
         for (var i = 0; i < results.length; i++) {
 
             const element = results[i]
-            translateChar(element)
-            //console.log(results[i]);
-            $("#personajes").append(
-                "<tr><td>" +
-                results[i].url.slice(28, -1) +
-                "</td> <td>" +
-                results[i].name +
-                "</td> <td>" +
-                results[i].gender +
-                "</td> <td>" +
-                results[i].height +
-                "</td> <td>" +
-                results[i].mass +
-                "</td> <td>" +
-                results[i].eye_color +
-                "</td> <td><button class='save-people'>" +
-                "Guardar" +
-                "</button></td> </tr>"
+            let id = element.url.slice(28, -1)
 
-            );
+            let search = findChar(id)
+            
+            if (!search) {
+
+                translateChar(element)
+                //console.log(results[i]);
+                $("#personajes").append(
+                    "<tr><td>" +
+                    element.url.slice(28, -1) +
+                    "</td> <td>" +
+                    element.name +
+                    "</td> <td>" +
+                    element.gender +
+                    "</td> <td>" +
+                    element.height +
+                    "</td> <td>" +
+                    element.mass +
+                    "</td> <td>" +
+                    results[i].eye_color +
+                    "</td> <td><button class='save-people'>" +
+                    "Guardar" +
+                    "</button></td> </tr>"
+
+                );
+            }
 
         }
-        
-        saveChar()
+
     }
+    saveChar()
     seeMore(_peopleData)
 }

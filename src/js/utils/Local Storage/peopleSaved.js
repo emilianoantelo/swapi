@@ -19,7 +19,7 @@ export default function peopleSaved() {
       "</td> <td>" +
       element.mass +
       "</td> <td>" +
-      element.eye +
+      element.eyes +
       "</td> <td><button class='delete-people'>" +
       "Borrar" +
       "</button></td> </tr>")

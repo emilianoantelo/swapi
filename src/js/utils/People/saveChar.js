@@ -1,4 +1,5 @@
 import { getLocalList, setLocalList } from "../localStorage";
+import { log } from "util";
 
 export default function saveChar() {
 
@@ -15,7 +16,7 @@ export default function saveChar() {
         let peopleGender = $(this).parent().prev().prev().prev().prev().text();
         let peopleName = $(this).parent().prev().prev().prev().prev().prev().text();
         let peopleId = $(this).parent().prev().prev().prev().prev().prev().prev().text();
-        
+    
         let peopleObj = {
             id: peopleId,
             name: peopleName,
