@@ -18,8 +18,11 @@ body {
   background-position: 30% 5%;
   background-size: cover;
 }
-#color-letter {
-  -webkit-text-stroke: 2px #efb810;
-  color: black;
-  letter-spacing: 0.1em;
+#wallpaper{
+  /* width: 100vw;
+  height: 100vh; */
+  background-image: url(../img/starWarsVertical2.jpg);
+  background-position: 30% 5%;
+  background-size: cover;
+
 }
