@@ -1,65 +1,28 @@
-$(document).ready(function() {
-  $("button").attr("disabled", true);
-  $("#name").on("input", validarNombre);
-  $("#email").on("input", validarEmail);
+import { validarNombre, validarEmail, validarComentario } from "../utils/contact/contact"
+
+
+
+function contactController() {
+  console.log('Se cargo la home')
+  console.log('entro')
+  let btn = $('#firstName')
+  console.log(btn)
+  $("#firstName").on("blur", function () {
+    validarNombre()
+  });
+  $ ('#email').on("blur", function(){
+    validarEmail()
+  });
+  $('#comments').on('blur', function(){
+    validarComentario()
+  });
+  // $("#firsName").on("input", validarNombre);
+  // $("#email").on("input", validarEmail);
+  // $("#comments").on("input", validarComentario)
 
   // $("#name").blur(validarNombre);
-  $("#name").one("blur", validarNombre);
-  $("#email").one("blur", validarEmail);
-});
-
-function ActualizarClases(_campoValido, _node) {
-  if (_campoValido) {
-    _node.classList.remove("is-invalid");
-    _node.classList.add("is-valid");
-  } else {
-    _node.classList.remove("is-valid");
-    _node.classList.add("is-invalid");
-  }
-}
-function validateAddButton() {
-  let addButton = document.getElementById("button");
-
-  let inputNombre = document.getElementById("name");
-
-  let validNombre = inputNombre.classList.contains("is-valid");
-  if (validNombre) {
-    addButton.disabled = false;
-  }
+  // $("#email").one("blur", validarEmail);
+  // $('#comments').one('blur', validarComentario)
 }
 
-function validarNombre(_event) {
-  let inputNode = _event.target;
-  let valorDelInput = inputNode.value;
-
-  let esNombreValido =
-    typeof valorDelInput === "string" &&
-    isNaN(valorDelInput) === true &&
-    valorDelInput != "";
-
-  ActualizarClases(esNombreValido, inputNode);
-  validateAddButton();
-}
-
-function validarEmail(_event) {
-  let inputNode = _event.target;
-  let valorDelInput = inputNode.value;
-
-  let esMailValido =
-    valorDelInput != "" &&
-    valorDelInput.indexOf("@") != -1 &&
-    valorDelInput.indexOf(".com") != -1;
-
-  ActualizarClases(esMailValido, inputNode);
-}
-
-
-
-
-function contactController(){
-    console.log('Se cargo la home')
-   
-
-  }
-  
-  export default contactController
+export default contactController

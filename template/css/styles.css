@@ -18,11 +18,17 @@ body {
   background-position: 30% 5%;
   background-size: cover;
 }
-#wallpaper{
-  /* width: 100vw;
-  height: 100vh; */
+body div #wallpaper{
+   width: 100vw;
+  height: 100vh; 
   background-image: url(../img/starWarsVertical2.jpg);
   background-position: 30% 5%;
   background-size: cover;
+
+}
+.color {
+  -webkit-text-stroke: 0.5px #efb810;
+  color: black;
+  
 
 }
